@@ -6,10 +6,10 @@ export default function SolarPanel({ rows = 3, columns = 6 }) {
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {/* Outer panel border */}
       <rect
-        x="10"
-        y="10"
-        width={30 * columns + 4}
-        height={42 * rows + 8}
+        x="0"
+        y="0"
+        width={30 * columns + 34}
+        height={42 * rows + 38}
         rx="10"
         fill="#f0f0f0"
         stroke="#333"
@@ -21,10 +21,10 @@ export default function SolarPanel({ rows = 3, columns = 6 }) {
         Array.from({ length: columns }, (_, col) => (
           <rect
             key={`${row}-${col}`}
-            x={20 + col * 28}
-            y={20 + row * 40}
-            width={24}
-            height={36}
+            x={20 + col * 30}
+            y={20 + row * 42}
+            width={26}
+            height={38}
             fill="#d0d0d0"
             stroke="#888"
             strokeWidth="1"

@@ -7,6 +7,9 @@ import ZipCodeForm from "@/components/client/weather/zip-code-form";
 import SunCloudy from "@/components/svg/sun-cloudy";
 import SolarPanel from "@/components/client/solar-panel";
 import { useEffect, useState } from "react";
+import WaterPump from "@/components/svg/water-pump";
+import WaterTank from "@/components/svg/water-tank";
+import WaterPipe from "@/components/svg/water-pipe";
 
 interface WeatherData {
   name: string;
@@ -37,27 +40,60 @@ const WaterHeater = () => {
     getWeather();
   }, [zipCode]);
 
-  if (data !== null) {
-    return (
-      <div>
-        <header className="flex w-ful items-end justify-center gap-x-16 bg-stone-900 px-16 py-8 text-white">
-          <LocationWeather
-            city={data.name}
-            temp={data.main.temp}
-            icon={data.weather[0].icon}
-            description={data.weather[0].description}
-          />
-          <ZipCodeForm zipCode={zipCode} setZipCode={setZipCode} />
-        </header>
-        <main className="p-16">
-          <SunCloudy />
-          <SolarPanel />
-        </main>
-      </div>
-    );
-  }
+  return (
+    <div>
+      {data !== null && (
+        <>
+          <header className="flex w-ful items-end justify-center gap-x-16 bg-stone-900 px-16 py-8 text-white">
+            <LocationWeather
+              city={data.name}
+              temp={data.main.temp}
+              icon={data.weather[0].icon}
+              description={data.weather[0].description}
+            />
+            <ZipCodeForm zipCode={zipCode} setZipCode={setZipCode} />
+          </header>
 
-  return <div>Loading...</div>;
+          <main className="flex items-center justify-center py-20">
+            <div>
+              <SunCloudy />
+              <div className="flex items-center">
+                {[...Array(4)].map((_, index) => (
+                  <WaterPipe
+                    bend={index === 0}
+                    transform={index === 0 ? "270" : "0"}
+                    key={`top-${index}`}
+                  />
+                ))}
+                <div className="relative right-18 -top-10 z-2 w-0 overflow-visible">
+                  <WaterPump />
+                </div>
+                {[...Array(4)].map((_, index) => (
+                  <WaterPipe bend={index === 3} key={index} />
+                ))}
+              </div>
+              <div className="flex items-center justify-between max-w-[1576px]">
+                <SolarPanel />
+                <div className="relative right-11">
+                  <WaterTank />
+                </div>
+              </div>
+              <div className="flex items-start">
+                <WaterPipe temp="hot" bend transform="180" />
+                {[...Array(6)].map((_, index) => (
+                  <div className="relative mt-[-10px]" key={index}>
+                    <WaterPipe temp="hot" key={`bottom-${index}`} />
+                  </div>
+                ))}
+                <WaterPipe temp="hot" bend transform="90" />
+              </div>
+            </div>
+          </main>
+        </>
+      )}
+      {data === null && <div>Loading...</div>}
+    </div>
+  );
 };
 
 export default WaterHeater;
