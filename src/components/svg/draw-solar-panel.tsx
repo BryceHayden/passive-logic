@@ -4,7 +4,6 @@ export default function SolarPanel({ rows = 3, columns = 6 }) {
 
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-      {/* Outer panel border */}
       <rect
         x="0"
         y="0"
@@ -16,7 +15,6 @@ export default function SolarPanel({ rows = 3, columns = 6 }) {
         strokeWidth="2"
       />
 
-      {/* Grid of solar cells */}
       {Array.from({ length: rows }, (_, row) =>
         Array.from({ length: columns }, (_, col) => (
           <rect
