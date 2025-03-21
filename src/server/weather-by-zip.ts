@@ -1,4 +1,5 @@
 "use server";
+
 import { z } from "zod";
 
 //for now we are only doing the US
@@ -24,13 +25,13 @@ export async function fetchWeather(zipCode = "84043", countryCode = "US") {
   }
 }
 
-export async function clientFetchWeather(formData: FormData) {
-  const schema = z.object({
-    zipCode: z.string().nonempty().length(5),
-  });
-  const { zipCode } = schema.parse({
-    zipCode: formData.get("zipCode"),
-  });
+// export async function clientFetchWeather(formData: FormData) {
+//   const schema = z.object({
+//     zipCode: z.string().nonempty().length(5),
+//   });
+//   const { zipCode } = schema.parse({
+//     zipCode: formData.get("zipCode"),
+//   });
 
-  return fetchWeather(zipCode);
-}
+//   return fetchWeather(zipCode);
+// }
