@@ -55,6 +55,7 @@ const WaterHeater = () => {
           </header>
 
           <main className="flex items-center justify-center py-20">
+            <div className="relative z-2 top-55 left-220 border-dashed border-2 border-black h-[600px] min-h-[1em] w-0 self-stretch"></div>
             <div>
               <SunCloudy />
               <div className="flex items-center">
@@ -73,9 +74,15 @@ const WaterHeater = () => {
                 ))}
               </div>
               <div className="flex items-center justify-between max-w-[1576px]">
-                <SolarPanel />
-                <div className="relative right-11">
-                  <WaterTank />
+                <div className="flex items-center">
+                  <SolarPanel />
+                  <div className="ml-60 text-4xl">Outside</div>
+                </div>
+                <div className="flex items-center">
+                  <div className="mr-40 text-4xl">Inside Home</div>
+                  <div className="relative right-11">
+                    <WaterTank />
+                  </div>
                 </div>
               </div>
               <div className="flex items-start">
