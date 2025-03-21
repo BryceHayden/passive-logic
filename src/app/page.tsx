@@ -27,7 +27,6 @@ const WaterHeater = () => {
     async function getWeather() {
       try {
         const weather = await fetchWeather(zipCode.toString());
-        console.log("HERE IS THE WEATHER", weather);
         setData(weather);
       } catch (err) {
         //Normally I would have this attached to our logger
@@ -38,11 +37,9 @@ const WaterHeater = () => {
     getWeather();
   }, [zipCode]);
 
-  if (data === null) {
-    <div>Loading...</div>;
-  } else {
+  if (data !== null) {
     return (
-      <>
+      <div>
         <header className="flex w-ful items-end justify-center gap-x-16 bg-stone-900 px-16 py-8 text-white">
           <LocationWeather
             city={data.name}
@@ -56,9 +53,11 @@ const WaterHeater = () => {
           <SunCloudy />
           <SolarPanel />
         </main>
-      </>
+      </div>
     );
   }
+
+  return <div>Loading...</div>;
 };
 
 export default WaterHeater;
